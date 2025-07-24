@@ -1,0 +1,55 @@
+cabal-version: 2.4
+name: fpga-design
+version: 0.1
+
+executable clash
+  main-is:
+    clash/Main.hs
+  build-depends:
+    base,
+    clash-lib,
+    clash-ghc,
+    fpga-design
+
+library
+  default-language:
+    GHC2021
+  default-extensions:
+    DataKinds
+    DefaultSignatures
+    DeriveAnyClass
+    DerivingStrategies
+    LambdaCase
+    NoStarIsType
+    TypeFamilies
+    UnicodeSyntax
+    ViewPatterns
+    TemplateHaskell
+    QuasiQuotes
+    NoImplicitPrelude
+  ghc-options:
+    -Wall -Wcompat
+    -fplugin GHC.TypeLits.Extra.Solver
+    -fplugin GHC.TypeLits.Normalise
+    -fplugin GHC.TypeLits.KnownNat.Solver
+    -fconstraint-solver-iterations=8
+    -fexpose-all-unfoldings
+    -fno-worker-wrapper
+    -fno-unbox-small-strict-fields
+    -fno-unbox-strict-fields
+  build-depends:
+    base,
+    clash-lib,
+    clash-ghc,
+    clash-prelude,
+    clash-cores,
+    clash-protocols,
+    ghc-typelits-extra,
+    ghc-typelits-natnormalise,
+    ghc-typelits-knownnat,
+    template-haskell,
+  hs-source-dirs:
+    src
+  exposed-modules:
+    TopLevel
+
